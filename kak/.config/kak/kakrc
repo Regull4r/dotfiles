@@ -1,6 +1,9 @@
-#Global line number
-add-highlighter global/ number-lines
-
 # indentation
 set-option global tabstop     4
 set-option global indentwidth 4
+
+# esc pressing hh  in sequence 
+hook global InsertChar h %{ try %{
+  exec -draft hH <a-k>hh<ret> d
+  exec <esc>
+}}
