@@ -7,3 +7,13 @@ hook global InsertChar h %{ try %{
   exec -draft hH <a-k>hh<ret> d
   exec <esc>
 }}
+
+#Package manager
+#source "%val{config}/plugins/plug.kak/rc/plug.kak"
+#plug "/alexherbo2/auto-pairs.kak" %{
+	#hook global WinCreate .* %{
+      #auto-pairs-enable
+    #}
+    #map global user s -docstring 'Surround' ': auto-pairs-surround <lt> <gt><ret>'
+    #map global user S -docstring 'Surround++' ': auto-pairs-surround <lt> <gt> _ _ * *<ret>'
+#}
