@@ -75,7 +75,8 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
-
+#Paths
+export XDG_CONFIG_HOME="$HOME/.config"
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -97,3 +98,4 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias dots="$HOME/dotfiles/"
