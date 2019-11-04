@@ -8,6 +8,9 @@ add-highlighter global/ number-lines -relative
 #matching parentheses
 add-highlighter global/ show-matching
 
+#theme
+colorscheme palenight
+
 # esc INSERT pressing hh  in sequence 
 hook global InsertChar h %{ try %{
   exec -draft hH <a-k>hh<ret> d
