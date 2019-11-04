@@ -1,7 +1,7 @@
 # Dotfiles for:
 
 - Terminal
-- Editor
+- Editor: Kakoune
 - Desktop
 - Keyboard Settingsr
 - Shell

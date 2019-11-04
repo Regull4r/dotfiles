@@ -98,4 +98,4 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias dots="$HOME/dotfiles/"
+alias dots="cd ~/dotfiles/"

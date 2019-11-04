@@ -3,9 +3,12 @@ set-option global tabstop     4
 set-option global indentwidth 4
 
 #line numbers
-#add-highlighter global/ number-lines
+add-highlighter global/ number-lines -relative
 
-# esc pressing hh  in sequence 
+#matching parentheses
+add-highlighter global/ show-matching
+
+# esc INSERT pressing hh  in sequence 
 hook global InsertChar h %{ try %{
   exec -draft hH <a-k>hh<ret> d
   exec <esc>
@@ -13,3 +16,17 @@ hook global InsertChar h %{ try %{
 
 #Plugins
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
+plug "andreyorst/smarttab.kak" defer smarttab %{
+    # when `backspace' is pressed, 4 spaces are deleted at once
+    set-option global softtabstop 4
+} config %{
+    hook global WinSetOption expandtab
+}
+
+plug "alexherbo2/auto-pairs.kak" config %{
+    hook global WinCreate .* %{
+          auto-pairs-enable
+    }
+    map global user s -docstring 'Surround' ': auto-pairs-surround <lt> <gt><ret>'
+    map global user S -docstring 'Surround++' ': auto-pairs-surround <lt> <gt> _ _ * *<ret>'
+}
