@@ -8,6 +8,9 @@ add-highlighter global/ number-lines -relative
 #matching parentheses
 add-highlighter global/ show-matching
 
+#whitespaces
+add-highlighter global/ show-whitespaces
+
 #theme
 colorscheme palenight
 
@@ -17,13 +20,24 @@ hook global InsertChar h %{ try %{
   exec <esc>
 }}
 
+#Yaml
+hook global WinSetOption filetype=yaml %{
+    set-option global tabstop 2 
+    set-option global indentwidth 2 
+    set-option global softtabstop 2 
+}
 #Plugins
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
 plug "andreyorst/smarttab.kak" defer smarttab %{
     # when `backspace' is pressed, 4 spaces are deleted at once
     set-option global softtabstop 4
+    set-option global smarttab_expandtab_mode_name 'exp'
+    set-option global smarttab_noexpandtab_mode_name 'noexp'
+    set-option global smarttab_smarttab_mode_name 'smart'
 } config %{
-    hook global WinSetOption expandtab
+    hook global WinCreate .* %{
+        expandtab
+    }
 }
 
 plug "alexherbo2/auto-pairs.kak" config %{
