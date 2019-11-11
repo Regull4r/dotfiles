@@ -1,7 +1,7 @@
 # Dotfiles for:
 
-- Terminal
+- Terminal: rxvt-unicode
 - Editor: Kakoune
 - Desktop
-- Keyboard Settingsr
-- Shell
+- Keyboard Settings
+- Shell: zsh
