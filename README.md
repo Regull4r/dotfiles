@@ -1,7 +1,11 @@
-# Dotfiles for:
+# Dotfiles:
 
-- Terminal: xfc4-terminal
-- Editor: Kakoune
-- Desktop
-- Keyboard Settings
-- Shell: zsh
+## Terminal: xfc4-terminal
+    - Shell: zsh
+        - Prompt: powerlevel10k
+    - Theme: Palenight
+    - Font: Fira Code
+
+### Terminal Editor: Kakoune
+## Desktop: Cinnamon
+## Keyboard Settings
