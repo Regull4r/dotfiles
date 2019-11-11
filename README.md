@@ -1,6 +1,6 @@
 # Dotfiles for:
 
-- Terminal: rxvt-unicode
+- Terminal: xfc4-terminal
 - Editor: Kakoune
 - Desktop
 - Keyboard Settings
