@@ -22,13 +22,15 @@ hook global InsertChar h %{ try %{
 
 #Yaml
 hook global WinSetOption filetype=yaml %{
-    set-option global tabstop 2 
-    set-option global indentwidth 2 
-    set-option global softtabstop 2 
+   set-option window tabstop 2 
+   set-option window indentwidth 2 
+   set-option window softtabstop 2 
 }
+
 #Plugins
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
 set-option global plug_always_ensure true
+
 plug "andreyorst/smarttab.kak" defer smarttab %{
     # when `backspace' is pressed, 4 spaces are deleted at once
     set-option global softtabstop 4
