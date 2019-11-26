@@ -16,15 +16,20 @@ colorscheme palenight
 
 # esc INSERT pressing hh  in sequence 
 hook global InsertChar h %{ try %{
-  exec -draft hH <a-k>hh<ret> d
-  exec <esc>
+    exec -draft hH <a-k>hh<ret> d
+    exec <esc>
 }}
 
 #Yaml
 hook global WinSetOption filetype=yaml %{
-   set-option window tabstop 2 
-   set-option window indentwidth 2 
-   set-option window softtabstop 2 
+    set-option window tabstop 2
+    set-option window indentwidth 2
+    set-option window softtabstop 2
+}
+
+#Shellcheck
+hook global WinSetOption filetype=sh %{
+    set window lintcmd 'shellcheck'
 }
 
 #Plugins
@@ -45,7 +50,7 @@ plug "andreyorst/smarttab.kak" defer smarttab %{
 
 plug "alexherbo2/auto-pairs.kak" config %{
     hook global WinCreate .* %{
-          auto-pairs-enable
+        auto-pairs-enable
     }
     map global user s -docstring 'Surround' ': auto-pairs-surround <lt> <gt><ret>'
     map global user S -docstring 'Surround++' ': auto-pairs-surround <lt> <gt> _ _ * *<ret>'
