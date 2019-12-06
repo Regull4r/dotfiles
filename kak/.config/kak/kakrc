@@ -3,7 +3,7 @@ set-option global tabstop     4
 set-option global indentwidth 4
 
 #line numbers
-add-highlighter global/ number-lines -relative
+add-highlighter global/ number-lines
 
 #matching parentheses
 add-highlighter global/ show-matching
