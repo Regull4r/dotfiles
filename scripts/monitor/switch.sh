@@ -1,31 +1,25 @@
 #!/bin/bash
 
-mapfile -t monitors < <(bspc query -M --names)
-mapfile -t desktops < <(bspc query -D --names)
+mapfile -t monitors < <( xrandr | grep " connected " | awk '{print $1}' )
+numMonitors=${#monitors[@]}
 
-toExternal(){
-    for m in ${monitors[*]} ; do
-        if [[ "$m" != "eDP1" ]] ; then
-            bspc monitor "eDP1" -a Temp > /dev/null
-            for d in ${desktops[*]}; do
-                bspc desktop "$d" --to-monitor "$m"
-            done
-        fi
-    bspc monitor DP1 -o 1 2 3 4 5 6 7 8 9 0
-    break
-    done
-}
+#xrandr --output eDP1 --primary --auto
 
-toIntegrated(){
-    for m in ${monitors[*]} ; do
-        if [[ "$m" != "eDP1" ]] ; then
-            bspc monitor "$m" -a Temp > /dev/null
-            for d in ${desktops[*]}; do
-                bspc desktop "$d" --to-monitor "eDP1"
-            done
-            bspc monitor "$m" --remove > /dev/null
+if [[ numMonitors -eq 1 ]]; then
+    mapfile -t activeMonitors < <(xrandr --listactivemonitors | awk 'NR>1{print $NF}')
+    for m in ${activeMonitors[*]}; do
+        if [[ $m != ${monitors[0]} ]]; then
+        echo "chu"
+            xrandr --output "$m" --off
         fi
     done
-}
-
-toIntegrated
+    xrandr --output "${monitors[0]}" --primary --auto
+elif [[ numMonitors -eq 2 ]]; then
+    mapfile -t activeMonitors < <(xrandr --listactivemonitors | awk 'NR>1{print $NF}')
+    numActiveMonitors=${#activeMonitors[@]}
+    if [[ numActiveMonitors -eq 1 ]]; then
+        xrandr --output "${monitors[1]}" --auto --output "${monitors[0]}" --auto --below "${monitors[1]}"
+    elif [[ numActiveMonitors -eq 2 ]]; then
+        xrandr --output "${monitors[1]}" --auto --output "${monitors[0]}" --off
+    fi
+fi

@@ -9,5 +9,7 @@
 ### Terminal Editor: Kakoune
 After installing execute:
     ln -s /usr/share/kak/autoload/ ~/.config/kak/autoload/autoload
-## Desktop: Cinnamon
-## Keyboard Settings
+## WM: i3
+## Power Manager: xfce4-power-manager
+## Display Manager: LightDM
+## Screen Save & Screen Locker: Light locker
