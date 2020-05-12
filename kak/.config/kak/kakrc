@@ -1,6 +1,6 @@
 # indentation
-set-option global tabstop     4
-set-option global indentwidth 4
+set-option global tabstop     2
+set-option global indentwidth 2
 
 #line numbers
 add-highlighter global/ number-lines
@@ -16,20 +16,20 @@ colorscheme palenight
 
 # esc INSERT pressing hh  in sequence 
 hook global InsertChar h %{ try %{
-    exec -draft hH <a-k>hh<ret> d
+  exec -draft hH <a-k>hh<ret> d
     exec <esc>
 }}
 
 #Yaml
 hook global WinSetOption filetype=yaml %{
-    set-option window tabstop 2
-    set-option window indentwidth 2
-    set-option window softtabstop 2
+  set-option window tabstop 2
+  set-option window indentwidth 2
+  set-option window softtabstop 2
 }
 
 #Shellcheck
 hook global WinSetOption filetype=sh %{
-    set window lintcmd 'shellcheck'
+  set window lintcmd 'shellcheck'
 }
 
 #Plugins
@@ -37,24 +37,29 @@ source "%val{config}/plugins/plug.kak/rc/plug.kak"
 set-option global plug_always_ensure true
 
 plug "andreyorst/smarttab.kak" defer smarttab %{
-    # when `backspace' is pressed, 4 spaces are deleted at once
-    set-option global softtabstop 4
-    set-option global smarttab_expandtab_mode_name 'exp'
-    set-option global smarttab_noexpandtab_mode_name 'noexp'
-    set-option global smarttab_smarttab_mode_name 'smart'
+  # when `backspace' is pressed, 4 spaces are deleted at once
+  set-option global softtabstop 2
+  set-option global smarttab_expandtab_mode_name 'exp'
+  set-option global smarttab_noexpandtab_mode_name 'noexp'
+  set-option global smarttab_smarttab_mode_name 'smart'
 } config %{
-    hook global WinCreate .* %{
-        expandtab
-    }
+  hook global WinCreate .* %{
+      expandtab
+  }
 }
 
 plug "alexherbo2/auto-pairs.kak" config %{
-    hook global WinCreate .* %{
-        auto-pairs-enable
-    }
-    map global normal <minus> :auto-pairs-surround<ret>
-    map global user s -docstring 'Surround' ': auto-pairs-surround <lt> <gt><ret>'
-    map global user S -docstring 'Surround++' ': auto-pairs-surround <lt> <gt> _ _ * *<ret>'
+  hook global WinCreate .* %{
+      auto-pairs-enable
+  }
+  map global normal <minus> :auto-pairs-surround<ret>
+  map global user s -docstring 'Surround' ': auto-pairs-surround <lt> <gt><ret>'
+  map global user S -docstring 'Surround++' ': auto-pairs-surround <lt> <gt> _ _ * *<ret>'
+}
+
+
+plug "ul/kak-lsp" do %{
+    cargo install --locked --force --path .
 }
 
 map global normal '#' :comment-line<ret>
