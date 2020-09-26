@@ -232,7 +232,7 @@ bar {
 # Window borders
 title_align center
 default_border pixel 4
-
+for_window [class=.*] border pixel 4
 # Window specific configurations
 assign [class="Firefox"] 1
 for_window [window_role="PictureInPicture"] sticky enable
